@@ -2,7 +2,7 @@
   "name": "revokeable-jwt",
   "version": "1.0.0",
   "description": "A revokeable jwt lib by dinamically changing the jwt signature",
-  "main": "index.ts",
+  "main": "revokeable-jwt/index.ts",
   "author": "Murillo Henrique Pedroso Ferreira",
   "license": "MIT",
   "dependencies": {
