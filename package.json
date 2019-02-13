@@ -1,0 +1,12 @@
+{
+  "name": "revokeable-jwt",
+  "version": "1.0.0",
+  "description": "A revokeable jwt lib by dinamically changing the jwt signature",
+  "main": "index.ts",
+  "author": "Murillo Henrique Pedroso Ferreira",
+  "license": "MIT",
+  "dependencies": {
+    "ioredis": "^4.6.2",
+    "jsonwebtoken": "^8.4.0"
+  }
+}
