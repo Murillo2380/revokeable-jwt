@@ -99,6 +99,16 @@ This project only needs the nodejs package ```jsonwebtoken```. Alternatively, yo
 
 Considering that the project has been written in ```TypeScript```, you need your project to be compatible. In the TODO list below, the author shall re-implement the code to be used both in ```JavaScript``` and ```TypeScript``` projects.
 
+# Caution
+
+The nonces, part of the jwt signature may not re-used, or the same signature string will be used to sign two different tokens. The TokenManager already takes care of it, but imagine a situation where the server shuts down and the nonces are stored in a volatile storage (redis without backup, for instance). The nonces will start counting up from 0. This may be dangerous because a revoked token may be valid again if the nonces gets incremented until the signature string matches the signature used to sign that revoked token.
+
+In a nutshell, you should either:
+
+- Backup every nonce periodically;
+- Change the jwt secret once the server restarts, or;
+- Backup only the GlobalNonce and restart the server with this global nonce incremented. In practice while the server is restarting, use the function to logout all the users provided in the ```TokenManager``` class, which will increment the GlobalNonce. This will safely allow you to reuse the other nonce numbers since the new jwt signature string will contain a different GlobalNonce.
+
 # TODO
 
 1. Add an iss field to the token, as well as an expire date to the issued token.
